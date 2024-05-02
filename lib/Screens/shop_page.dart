@@ -1,8 +1,10 @@
 import 'package:ecommerce/components/myDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce/Models/shop_functions.dart';
+import 'package:ecommerce/components/cartButton.dart';
 
 class Shopping extends StatefulWidget {
   const Shopping({super.key});
@@ -13,8 +15,13 @@ class Shopping extends StatefulWidget {
 
 class _ShoppingState extends State<Shopping> {
   @override
+
+
+
   Widget build(BuildContext context) {
     final palette =Theme.of(context).colorScheme;
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -64,7 +71,7 @@ class _ShoppingState extends State<Shopping> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20,0,20,10),
+                              padding: const EdgeInsets.fromLTRB(20,5,20,10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -73,9 +80,16 @@ class _ShoppingState extends State<Shopping> {
 
                                       child: Container(
                                         width: double.infinity,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(18),
+                                          child: Image.asset(value.products[index].imagePath ,
+                                          fit: BoxFit.fill,
+                                          ),
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(18)
+                                            
                                         ),
                                       ),
 
@@ -101,13 +115,14 @@ class _ShoppingState extends State<Shopping> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Text('${value.products[index].price}'),
-                                Container(
-                                  child: IconButton(
-                                      onPressed: (){
 
-                                      },
-                                      icon: Icon(Icons.add) ,),
-                                ),
+                                CartButton(value: value,
+                                    onTap: (){
+                                      value.addToCart(value.products[index]);
+                                    },
+                                    icon: Icon(Icons.add),
+                                    index: index)
+
 
                               ],
                             )

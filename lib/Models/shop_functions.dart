@@ -6,23 +6,30 @@ class ShopFunctions extends ChangeNotifier {
   final List<Shop> products  = [
     Shop(
       name : 'Glasses',
-      description : 'Lorem ipsldhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhagfghdkghldfhlkshgsdhljgldjkfhjlghlksj;jafkl;jskfjasl;fj;aldjfsum',
-      price : 99.99
+      description : 'Lorem ipsum',
+      price : 99.99,
+      imagePath: 'assets/glasses.jpg'
     ),
     Shop(
-        name : 'Glasses',
+        name : 'Shoes',
         description : 'Lorem ipsum',
-        price : 99.99
+        price : 99.99,
+        imagePath: 'assets/shoes.jpg'
+
     ),
     Shop(
-        name : 'Glasses',
+        name : 'Bag',
         description : 'Lorem ipsum',
-        price : 99.99
+        price : 99.99,
+        imagePath: 'assets/bag.jpg'
+
     ),
     Shop(
-        name : 'Glasses',
+        name : 'Hoodie',
         description : 'Lorem ipsum',
-        price : 99.99
+        price : 99.99,
+        imagePath: 'assets/hooide.jpg'
+
     )
   ] ;
 
@@ -36,11 +43,13 @@ List<Shop> cart = [];
 void addToCart(Shop product)
 {
   cart.add(product);
+  notifyListeners();
 }
 
 void removeFromCart(Shop product)
 {
   cart.remove(product);
+  notifyListeners();
 }
 
 }
